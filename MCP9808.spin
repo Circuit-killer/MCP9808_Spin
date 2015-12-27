@@ -14,12 +14,6 @@ Resolution settings
 |  +0.25 C   |     65     | 15  |
 |  +0.1255 C |     130    | 7   |  
 |  +0.0625 C |     250    | 4   |  
-
-TODO:
-- Possibly improve setting temps by doing the 2's compliment for the user
-- Ensure that temperature values are correct
-- Spell check and optimize where possible
-- Abort trapping
 }
 
 CON
@@ -41,6 +35,7 @@ OBJ
   I2C : "I2C SPIN driver v1.4od"
 
 PUB start(adr, data_pin, clk_pin)
+  ' Start the sensor I2C bus
   DevAdr := adr
   I2C.init(clk_pin, data_pin)
   started ~~ 'Flag that sensor startup has been completed
@@ -72,9 +67,13 @@ PUB getAlerts : alerts | temp
   alerts := (temp & $E000) >> 13
 
 PUB readWordReg(reg)
+  ' Reads a given register address and return the
+  ' 16-bit result of the read.
   RESULT := I2C.readWordB(DevAdr, reg)
 
 PUB readByteReg(reg)
+  ' Reads a given register address and return the
+  ' 8-bit result of the read.
   RESULT := I2C.readByte(DevAdr, reg)
   
 PUB setTempHigh(limit)
@@ -227,15 +226,19 @@ PUB changeRegister(register, mask, value) | data
   I2C.writeWordB(DevAdr, register, data)
 
 PUB setLowRes
+  ' Set sensor to low resolution
   I2C.writeByte(DevAdr, ResReg, $00)
 
 PUB setMedRes
+  ' Set sensor to medium resolution
   I2C.writeByte(DevAdr, ResReg, $01)
 
 PUB setHighRes
+  ' Set sensor to high resolution
   I2C.writeByte(DevAdr, ResReg, $02)
 
 PUB setUHighRes
+  ' Set sensor to ultra-high resolution (default)
   I2C.writeByte(DevAdr, ResReg, $03)
 
 DAT                     

@@ -83,6 +83,7 @@ PUB go : t
   {
   Test working with the resolution register.
   }
+  
   PST.Str(String("Set resolution to low....."))
   MCP9808.setLowRes 
   t :=  MCP9808.readByteReg($08)
