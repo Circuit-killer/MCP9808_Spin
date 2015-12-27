@@ -23,14 +23,15 @@ TODO:
 }
 
 CON
-  ConfigReg = $01
-  AltUpReg = $02
-  AltLowReg = $03
-  TempCritReg = $04
-  TempReg = $05
-  MfgIdReg = $06
-  DevIdReg = $07
-  ResReg = $08
+
+ConfigReg = $01
+AltUpReg = $02
+AltLowReg = $03
+TempCritReg = $04
+TempReg = $05
+MfgIdReg = $06
+DevIdReg = $07
+ResReg = $08
 
 VAR
   word started
