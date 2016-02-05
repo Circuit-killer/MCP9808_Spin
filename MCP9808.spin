@@ -18,8 +18,8 @@ Resolution settings
 
 CON
 
-ConfigReg = $02
-AltUpReg = $01
+ConfigReg = $01
+AltUpReg = $02
 AltLowReg = $03
 TempCritReg = $04
 TempReg = $05
